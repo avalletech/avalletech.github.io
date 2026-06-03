@@ -4,507 +4,748 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexis Valle-Bonilla | IT Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-  :root {
-    --bg: #000000;
-    --bg2: #000000;
-    --bg3: #000000;
-    --accent: #00ff5e;
-    --accent2: #ff0000;
-    --text: #ffffff;
-    --muted: #ffffff74;
-    --border: rgba(255,255,255,0.07);
-    --border-accent: rgba(20, 201, 0, 0.3);
-    --card-bg: #141820;
-    --tag-bg: rgba(0,201,167,0.1);
-    --tag-text: #00ff5e;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+:root {
+  --green:       #00e676;
+  --green-dim:   #00994d;
+  --green-dark:  #002b14;
+  --green-glow:  rgba(0,230,118,0.12);
+  --green-glow2: rgba(0,230,118,0.28);
+  --black:       #030807;
+  --bg-card:     #060f09;
+  --bg-card2:    #0a1a0e;
+  --text:        #c8f5dc;
+  --text-dim:    #7abf96;
+  --text-muted:  #3d7a55;
+  --border:      rgba(0,230,118,0.22);
+  --border-bright: rgba(0,230,118,0.55);
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
+html { scroll-behavior: smooth; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(12,15,20,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+}
 
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(3,8,7,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2.5rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(8px);
+}
 
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px var(--green-glow2);
+}
 
-  .nav-links a:hover { color: var(--text); }
+.nav-logo span { color: var(--text-muted); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 100px 4rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-  }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    width: 100%;
-  }
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
 
-  .hero-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+.nav-links a:hover { color: var(--green); }
 
-  .hero-label::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
+.nav-resume {
+  background: transparent;
+  border: 1px solid var(--green-dim);
+  color: var(--green) !important;
+  padding: 0.3rem 0.9rem;
+  font-size: 11px !important;
+  letter-spacing: 0.12em;
+  transition: all 0.15s !important;
+}
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
+.nav-resume:hover {
+  background: var(--green-glow) !important;
+  border-color: var(--green) !important;
+  box-shadow: 0 0 12px var(--green-glow2);
+}
 
-  h1 span { color: var(--accent); }
+.nav-mobile-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 18px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
 
-  .hero-desc {
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin-bottom: 2rem;
-    max-width: 480px;
-  }
+/* ── HERO ── */
+.hero-wrap {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
 
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+#sys-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.13;
+}
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.65rem 1.4rem;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
+.hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 110px 2.5rem 5rem;
+}
 
-  .btn-primary {
-    background: var(--accent);
-    color: #0C0F14;
-  }
+.hero-eyebrow {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
 
-  .btn-primary:hover { background: #00e0bb; }
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--green-dim);
+}
 
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
+h1 {
+  font-family: var(--mono);
+  font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+  color: var(--green);
+  text-shadow: 0 0 30px rgba(0,230,118,0.25);
+}
 
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: var(--bg3); }
+h1 .glitch {
+  display: inline-block;
+  position: relative;
+  animation: glitch-main 5s infinite;
+}
 
-  /* TERMINAL CARD */
-  .terminal {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-  }
+h1 .glitch::before,
+h1 .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+}
 
-  .terminal-bar {
-    background: var(--bg3);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid var(--border);
-  }
+h1 .glitch::before {
+  color: var(--green);
+  text-shadow: -2px 0 rgba(255,0,80,0.6);
+  animation: glitch-top 5s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
+}
 
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #FF5F57; }
-  .dot-y { background: #FFBD2E; }
-  .dot-g { background: #28C840; }
+h1 .glitch::after {
+  color: var(--green);
+  text-shadow: 2px 0 rgba(0,80,255,0.5);
+  animation: glitch-bot 5s infinite;
+  clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
+}
 
-  .terminal-title {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--muted);
-  }
+@keyframes glitch-main {
+  0%,91%,93%,100% { transform: none; }
+  92% { transform: skewX(-0.8deg); }
+}
+@keyframes glitch-top {
+  0%,90%,94%,100% { transform: none; opacity: 0; }
+  91% { transform: translate(-3px,-1px); opacity: 1; }
+  93% { transform: translate(3px,0); opacity: 1; }
+}
+@keyframes glitch-bot {
+  0%,90%,94%,100% { transform: none; opacity: 0; }
+  91% { transform: translate(3px,1px); opacity: 1; }
+  93% { transform: translate(-3px,0); opacity: 1; }
+}
 
-  .terminal-body { padding: 1.2rem 1.4rem; line-height: 2; }
+.hero-sub {
+  font-family: var(--sans);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+}
 
-  .t-prompt { color: var(--accent); }
-  .t-cmd { color: var(--text); }
-  .t-out { color: var(--muted); }
-  .t-key { color: var(--accent2); }
-  .t-val { color: #FFD080; }
-  .t-blank { display: block; height: 0.5rem; }
-  .t-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    background: var(--accent);
-    vertical-align: -2px;
-    animation: blink 1s step-end infinite;
-  }
+.hero-desc {
+  font-family: var(--sans);
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+  line-height: 1.85;
+  border-left: 2px solid var(--green-dark);
+  padding-left: 1.2rem;
+}
 
-  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.hero-desc strong {
+  color: var(--green);
+  font-weight: 500;
+}
 
-  /* SECTIONS */
-  section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 4rem;
-  }
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
 
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
+.btn-primary {
+  background: var(--green);
+  color: #000;
+  font-weight: 600;
+}
 
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: var(--text);
-  }
+.btn-primary:hover {
+  background: transparent;
+  color: var(--green);
+  outline: 1px solid var(--green);
+  box-shadow: 0 0 16px var(--green-glow2);
+}
 
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-  }
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  outline: 1px solid var(--text-muted);
+}
 
-  .skill-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.4rem;
-    transition: border-color 0.2s;
-  }
+.btn-ghost:hover {
+  color: var(--green);
+  outline-color: var(--green);
+  box-shadow: 0 0 10px var(--green-glow);
+}
 
-  .skill-card:hover { border-color: var(--border-accent); }
+/* ── STATUS BAR ── */
+.status-bar {
+  display: flex;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
 
-  .skill-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--tag-bg);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    margin-bottom: 0.8rem;
-  }
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
 
-  .skill-card h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
+.status-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
 
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.6rem;
-  }
+.status-val {
+  font-size: 13px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
-  .tag {
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border-accent);
-  }
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
+.dot.pending {
+  background: #ffb300;
+  box-shadow: 0 0 6px rgba(255,179,0,0.6);
+}
 
-  .project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.8rem;
-    transition: border-color 0.2s, transform 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 
-  .project-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-2px);
-  }
+/* ── LAYOUT ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
 
-  .project-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-  }
+section {
+  padding: 3.5rem 0;
+}
 
-  .project-card h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.6rem;
-  }
+.section-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
 
-  .project-card p {
-    color: var(--muted);
-    font-size: 14px;
-    flex: 1;
-    margin-bottom: 1.2rem;
-  }
+.section-label::before,
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
 
-  .project-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+h2 {
+  font-family: var(--sans);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3rem;
+  letter-spacing: -0.01em;
+}
 
-  /* CERTS */
-  .certs-row {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 2.5rem;
+}
 
-  .cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.4rem 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
-    min-width: 240px;
-  }
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
 
-  .cert-badge {
-    width: 44px;
-    height: 44px;
-    background: var(--tag-bg);
-    border: 1px solid var(--border-accent);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    font-weight: 500;
-    text-align: center;
-    flex-shrink: 0;
-    line-height: 1.3;
-  }
+.about-text {
+  font-family: var(--sans);
+  color: var(--text-dim);
+  font-size: 0.93rem;
+  line-height: 1.9;
+}
 
-  .cert-info h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-  }
+.about-text p + p { margin-top: 1.2rem; }
 
-  .cert-status {
-    font-size: 12px;
-    color: #FFD080;
-    font-family: 'DM Mono', monospace;
-  }
+.about-text strong { color: var(--green); font-weight: 500; }
 
-  /* CONTACT */
-  .contact-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 3rem;
-    text-align: center;
-  }
+.about-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 
-  .contact-box p {
-    color: var(--muted);
-    max-width: 500px;
-    margin: 0 auto 2rem;
-  }
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
 
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+.meta-key {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
 
-  /* DIVIDER */
-  .divider {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 4rem;
-    border: none;
-    border-top: 1px solid var(--border);
-  }
+.meta-val {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-family: var(--sans);
+}
 
-  footer {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--muted);
-    font-size: 13px;
-  }
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
 
-  footer span { font-family: 'DM Mono', monospace; }
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
 
-  @media (max-width: 768px) {
-    .hero, section { padding: 4rem 1.5rem; }
-    .hero { padding-top: 80px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    nav { padding: 0 1.5rem; }
-    .nav-links { gap: 1rem; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .divider { padding: 0 1.5rem; }
-  }
+.skill-card:hover {
+  border-color: var(--border-bright);
+  box-shadow: 0 0 20px var(--green-glow);
+}
+
+.skill-card h3 {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+.skill-cat {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.55rem;
+  background: transparent;
+  transition: all 0.1s;
+}
+
+.skill-card:hover .tag {
+  color: var(--text-dim);
+  border-color: rgba(0,230,118,0.35);
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.project-card:hover {
+  border-color: var(--border-bright);
+  box-shadow: 0 0 24px var(--green-glow);
+  transform: translateY(-2px);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.project-num {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+}
+
+.project-card h3 {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.project-card p {
+  font-family: var(--sans);
+  font-size: 0.87rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  flex: 1;
+}
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── CERTS ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.cert-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: border-color 0.15s;
+}
+
+.cert-card:hover { border-color: var(--border-bright); }
+
+.cert-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  border: 1px solid var(--green-dim);
+  padding: 0.3rem 0.6rem;
+  min-width: 54px;
+  text-align: center;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.cert-info h3 {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.cert-info p {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--sans);
+}
+
+.cert-status {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  margin-top: 0.25rem;
+}
+
+.cert-status.done { color: var(--green-dim); }
+.cert-status.active {
+  color: #ffb300;
+  animation: pulse 2s infinite;
+}
+
+/* ── CONTACT ── */
+.contact-box {
+  max-width: 620px;
+}
+
+.contact-box p {
+  font-family: var(--sans);
+  color: var(--text-dim);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer .prompt::before {
+  content: '>';
+  color: var(--green);
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 13px;
+  background: var(--green);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 52px; left: 0; right: 0; background: rgba(3,8,7,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; gap: 1.2rem; z-index: 300; }
+  .nav-links.open { display: flex; }
+  .nav-mobile-toggle { display: block; }
+
+  .hero { padding: 90px 1.5rem 4rem; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .container { padding: 0 1.5rem; }
+  section { padding: 4rem 0; }
+  .divider { margin: 0 1.5rem; }
+  footer { padding: 1.5rem; }
+
+  .status-bar { gap: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+  .contact-links { flex-direction: column; }
+  .btn { justify-content: center; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">avb@portfolio:~$</div>
-  <ul class="nav-links">
+  <div class="nav-logo">AVB</div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certs">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="https://raw.githubusercontent.com/avalletech/avalletech.github.io/main/Alexis_VB_Resume.docx" class="nav-resume" target="_blank" rel="noopener noreferrer">Resume ↓</a></li>
   </ul>
+  <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle nav">☰</button>
 </nav>
 
-<div class="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="hero-label">IT Portfolio</div>
-      <h1>Alexis<br>Valle-<span>Bonilla</span></h1>
-      <p class="hero-desc">
-        Computer Systems student at City Tech CUNY. Focused on networking, systems administration, cloud infrastructure, and security. Based in Queens, NY.
-      </p>
-      <div class="hero-btns">
-        <a href="AVBResume.docx" class="btn btn-primary" download>Download Resume</a>
-        <a href="#projects" class="btn btn-ghost">View Projects</a>
-      </div>
+<div class="hero-wrap">
+  <canvas id="sys-canvas"></canvas>
+  <div class="hero">
+    <h1><span class="glitch" data-text="Alexis">Alexis</span><br>Valle-Bonilla</h1>
+    <div class="hero-sub">IT Support · Network Operations · Security</div>
+    <p class="hero-desc">
+      Computer Systems student at <strong>CUNY New York City College of Technology</strong>, BTECH expected May 2027.
+      Hands-on with virtualization, networking, and scripting. Real-world troubleshooting experience
+      from five years in telecom. Based in <strong>Queens, NY</strong>.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://raw.githubusercontent.com/avalletech/avalletech.github.io/main/Alexis_VB_Resume.docx" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Download Resume</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
     </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <div class="terminal-title">info.sh</div>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <span class="status-label">Status</span>
+        <span class="status-val"><span class="dot"></span> Open to Internships</span>
       </div>
-      <div class="terminal-body">
-        <div><span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span></div>
-        <span class="t-blank"></span>
-        <div><span class="t-out">{</span></div>
-        <div>&nbsp;&nbsp;<span class="t-key">"name"</span><span class="t-out">: </span><span class="t-val">"Alexis Valle-Bonilla"</span><span class="t-out">,</span></div>
-        <div>&nbsp;&nbsp;<span class="t-key">"location"</span><span class="t-out">: </span><span class="t-val">"Queens, NY"</span><span class="t-out">,</span></div>
-        <div>&nbsp;&nbsp;<span class="t-key">"degree"</span><span class="t-out">: </span><span class="t-val">"B.Tech Computer Systems"</span><span class="t-out">,</span></div>
-        <div>&nbsp;&nbsp;<span class="t-key">"focus"</span><span class="t-out">: [</span></div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Networking"</span><span class="t-out">,</span></div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Cloud &amp; Virtualization"</span><span class="t-out">,</span></div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Security"</span></div>
-        <div>&nbsp;&nbsp;<span class="t-out">],</span></div>
-        <div>&nbsp;&nbsp;<span class="t-key">"status"</span><span class="t-out">: </span><span class="t-val">"open to work"</span></div>
-        <div><span class="t-out">}</span></div>
-        <span class="t-blank"></span>
-        <div><span class="t-prompt">$ </span><span class="t-cursor"></span></div>
+      <div class="status-item">
+        <span class="status-label">Location</span>
+        <span class="status-val">Queens, NY / NYC Metro</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Degree</span>
+        <span class="status-val">BTECH · May 2027</span>
       </div>
     </div>
   </div>
@@ -512,78 +753,141 @@
 
 <hr class="divider">
 
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2>Background</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm an IT student and aspiring network/systems professional based in Queens, NY. I'm finishing a
+          <strong>BTECH in Computer Systems</strong> at CUNY New York City College of Technology (May 2027), building on an
+          <strong>AAS in Computer Information Systems</strong> I completed in 2025.
+        </p>
+        <p>
+          My hands-on work spans network simulation in <strong>Cisco Packet Tracer</strong>, virtualization
+          with <strong>Hyper-V, VMware, VirtualBox, and AWS EC2</strong>, Active Directory administration,
+          web server configuration with <strong>Apache</strong>, packet analysis with <strong>Wireshark</strong>,
+          and scripting in <strong>Python and PowerShell</strong>.
+        </p>
+        <p>
+          Before pivoting to IT full-time, I spent nearly five years in telecom at <strong>T-Mobile</strong>
+          as a Mobile Expert — troubleshooting devices, diagnosing connectivity issues,
+          and resolving escalated technical problems for customers daily. That experience gave me
+          something lab work alone can't: real communication skills under pressure.
+        </p>
+        <p>
+          I'm bilingual in <strong>English and Spanish</strong> and actively working toward
+          <strong>CompTIA A+</strong> and <strong>Network+</strong> to formalize what I've been
+          building in the lab.
+        </p>
+      </div>
+      <div class="about-meta">
+        <div class="meta-row">
+          <span class="meta-key">Current Program</span>
+          <span class="meta-val">BTECH Computer Systems — CUNY New York City College of Technology</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Completed</span>
+          <span class="meta-val">AAS Computer Information Systems — May 2025</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Target Roles</span>
+          <span class="meta-val">Help Desk · Desktop Support · Network Support · Jr. Sysadmin · NOC</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Certifications</span>
+          <span class="meta-val">CompTIA A+ · Network+ (both in progress)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Languages</span>
+          <span class="meta-val">English (fluent) · Spanish (fluent)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">GitHub</span>
+          <span class="meta-val"><a href="https://github.com/avalletech" style="color:var(--green); text-decoration:none;">github.com/avalletech</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <section id="skills">
-  <div class="section-label">Technical Skills</div>
-  <h2>What I Work With</h2>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <h3>Networking</h3>
-      <div class="skill-tags">
-        <span class="tag">Cisco Packet Tracer</span>
-        <span class="tag">TCP/IP</span>
-        <span class="tag">VLANs</span>
-        <span class="tag">OSPF</span>
-        <span class="tag">Wireshark</span>
-        <span class="tag">Nmap</span>
-        <span class="tag">tcpdump</span>
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">Networking</div>
+        <h3>Network Infrastructure</h3>
+        <div class="skill-tags">
+          <span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">TCP/IP</span>
+          <span class="tag">VLANs</span>
+          <span class="tag">OSPF / RIP</span>
+          <span class="tag">Wireshark</span>
+          <span class="tag">Nmap</span>
+          <span class="tag">tcpdump</span>
+        </div>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">☁️</div>
-      <h3>Cloud & Virtualization</h3>
-      <div class="skill-tags">
-        <span class="tag">AWS EC2</span>
-        <span class="tag">AWS S3</span>
-        <span class="tag">VPC</span>
-        <span class="tag">Hyper-V</span>
-        <span class="tag">VMware</span>
-        <span class="tag">VirtualBox</span>
+      <div class="skill-card">
+        <div class="skill-cat">Cloud &amp; Virtualization</div>
+        <h3>Virtual Environments</h3>
+        <div class="skill-tags">
+          <span class="tag">AWS EC2</span>
+          <span class="tag">AWS S3</span>
+          <span class="tag">VPC</span>
+          <span class="tag">Hyper-V</span>
+          <span class="tag">VMware</span>
+          <span class="tag">VirtualBox</span>
+        </div>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🛡️</div>
-      <h3>Security</h3>
-      <div class="skill-tags">
-        <span class="tag">Network Security</span>
-        <span class="tag">Firewall Concepts</span>
-        <span class="tag">Wireshark</span>
-        <span class="tag">Nmap</span>
-        <span class="tag">tcpdump</span>
+      <div class="skill-card">
+        <div class="skill-cat">Systems &amp; Servers</div>
+        <h3>OS &amp; Administration</h3>
+        <div class="skill-tags">
+          <span class="tag">Windows Server</span>
+          <span class="tag">Active Directory</span>
+          <span class="tag">Apache</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">Linux</span>
+        </div>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">⚙️</div>
-      <h3>Systems & Servers</h3>
-      <div class="skill-tags">
-        <span class="tag">Windows Server</span>
-        <span class="tag">Apache</span>
-        <span class="tag">PowerShell</span>
-        <span class="tag">Linux</span>
-        <span class="tag">Active Directory</span>
+      <div class="skill-card">
+        <div class="skill-cat">Security</div>
+        <h3>Security Fundamentals</h3>
+        <div class="skill-tags">
+          <span class="tag">Wireshark</span>
+          <span class="tag">Nmap</span>
+          <span class="tag">Firewall Concepts</span>
+          <span class="tag">Network Monitoring</span>
+          <span class="tag">RBAC</span>
+        </div>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">💻</div>
-      <h3>Programming</h3>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">PowerShell</span>
-        <span class="tag">SQL</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">HTML/CSS</span>
-        <span class="tag">Java</span>
+      <div class="skill-card">
+        <div class="skill-cat">Programming</div>
+        <h3>Languages &amp; Scripting</h3>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">SQL</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">Java</span>
+        </div>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">🔧</div>
-      <h3>Hardware & Support</h3>
-      <div class="skill-tags">
-        <span class="tag">PC Building</span>
-        <span class="tag">Hardware Troubleshooting</span>
-        <span class="tag">Device Config</span>
-        <span class="tag">MS Office</span>
-        <span class="tag">Google Workspace</span>
+      <div class="skill-card">
+        <div class="skill-cat">Hardware &amp; Support</div>
+        <h3>End-User Support</h3>
+        <div class="skill-tags">
+          <span class="tag">PC Building</span>
+          <span class="tag">Hardware Troubleshooting</span>
+          <span class="tag">Device Config</span>
+          <span class="tag">MS Office</span>
+          <span class="tag">Google Workspace</span>
+        </div>
       </div>
     </div>
   </div>
@@ -592,107 +896,120 @@
 <hr class="divider">
 
 <section id="projects">
-  <div class="section-label">Projects</div>
-  <h2>Things I've Built</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-num">01</div>
-      <h3>Multi-Subnet LAN/WAN Topology</h3>
-      <p>Designed and simulated a multi-subnet network in Cisco Packet Tracer with VLANs, inter-VLAN routing, and dynamic routing protocols (OSPF/RIP). Diagnosed connectivity failures and validated configurations end-to-end.</p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Packet Tracer</span>
-          <span class="tag">VLANs</span>
-          <span class="tag">OSPF</span>
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2>Things I've Built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">01</span>
         </div>
-        <a href="https://github.com/avalletech/network-topology-lab" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">02</div>
-      <h3>Apache Web Server Deployment</h3>
-      <p>Setting up and configuring an Apache HTTP server on Linux including virtual hosts, directory permissions, basic authentication, and SSL/TLS with a self-signed certificate. HTTP vs HTTPS traffic compared via Wireshark captures. <em style="color:var(--accent); font-style:normal;">In Progress</em></p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Apache</span>
-          <span class="tag">Linux</span>
-          <span class="tag">HTTP</span>
-          <span class="tag">SSL/TLS</span>
-        </div>
-        <a href="https://github.com/avalletech/apache-webserver-lab" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">03</div>
-      <h3>Virtualization Lab & Active Directory</h3>
-      <p>Deployed virtual machines using Hyper-V and VirtualBox. Installed Windows Server, promoted it to a Domain Controller, and configured Active Directory Domain Services (AD DS) including user accounts, groups, and role-based access. Also provisioned AWS EC2 instances with security groups and remote access via SSH/RDP.</p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Hyper-V</span>
-          <span class="tag">VirtualBox</span>
-          <span class="tag">Active Directory</span>
-          <span class="tag">Windows Server</span>
-          <span class="tag">AWS EC2</span>
+        <h3>Network Topology Lab</h3>
+        <p>Designed and simulated a multi-subnet LAN/WAN environment in Cisco Packet Tracer with VLANs, inter-VLAN routing, and dynamic routing protocols (OSPF/RIP). Configured routers, switches, and end devices; diagnosed connectivity failures end-to-end.</p>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Packet Tracer</span>
+            <span class="tag">VLANs</span>
+            <span class="tag">OSPF</span>
+            <span class="tag">Routing</span>
+          </div>
+          <a href="https://github.com/avalletech/network-topology-lab" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" style="font-size:11px; padding: 0.3rem 0.9rem;">GitHub ↗</a>
         </div>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">04</div>
-      <h3>Network Traffic Analysis Lab</h3>
-      <p>Captured and analyzed live network traffic using Wireshark. Filtered ICMP traffic, analyzed TCP segment reassembly, and inspected HTTP application layer data across multiple OSI layers. Labs completed as part of CST 3507 at City Tech.</p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Wireshark</span>
-          <span class="tag">TCP/IP</span>
-          <span class="tag">ICMP</span>
-          <span class="tag">HTTP</span>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">02</span>
         </div>
-        <a href="https://github.com/avalletech/wireshark-traffic-analysis" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">05</div>
-      <h3>Python Automation Scripts</h3>
-      <p>Python scripts built for real Windows automation use cases. Includes a Downloads folder organizer that categorizes files by type with collision-safe handling, and a startup launcher using dynamic path resolution and subprocess automation.</p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Automation</span>
-          <span class="tag">pathlib</span>
-          <span class="tag">subprocess</span>
+        <h3>Wireshark Traffic Analysis</h3>
+        <p>Captured and analyzed live network traffic using Wireshark and tcpdump. Identified protocols, filtered packets by type, and practiced detection of anomalous traffic patterns. Includes pcap files and analysis notes.</p>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Wireshark</span>
+            <span class="tag">tcpdump</span>
+            <span class="tag">Nmap</span>
+            <span class="tag">Packet Analysis</span>
+          </div>
+          <a href="https://github.com/avalletech/wireshark-traffic-analysis" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" style="font-size:11px; padding: 0.3rem 0.9rem;">GitHub ↗</a>
         </div>
-        <a href="https://github.com/avalletech/python-scripts" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
       </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">06</div>
-      <h3>Active Directory Lab</h3>
-      <p>Deploying Windows Server in Hyper-V, promoting to Domain Controller, and configuring AD DS with OUs, user accounts, security groups, and role-based access control. Client VM joined to domain with Group Policy enforcement. <em style="color:var(--accent); font-style:normal;">In Progress</em></p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Active Directory</span>
-          <span class="tag">Windows Server</span>
-          <span class="tag">Hyper-V</span>
-          <span class="tag">RBAC</span>
-          <span class="tag">Group Policy</span>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">03</span>
         </div>
-        <a href="https://github.com/avalletech/active-directory-lab" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-num">07</div>
-      <h3>Network Security Fundamentals</h3>
-      <p>Structured course notes from CST 3610 at City Tech, completed with 100% across all Participation, Challenge, and Lab activities. Covers cryptography, network attacks, secure network design, endpoint security, cloud security, segmentation, and more.</p>
-      <div class="project-footer">
-        <div class="skill-tags">
-          <span class="tag">Network Security</span>
-          <span class="tag">Cryptography</span>
-          <span class="tag">Cloud Security</span>
-          <span class="tag">Endpoint Security</span>
+        <h3>Apache Web Server Lab</h3>
+        <p>Set up and configured an Apache HTTP server including virtual hosts, directory permissions, and basic authentication. Tested server connectivity and served static web content in a local Linux/Windows environment.</p>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Apache</span>
+            <span class="tag">Linux</span>
+            <span class="tag">HTTP</span>
+            <span class="tag">Virtual Hosts</span>
+          </div>
+          <a href="https://github.com/avalletech/apache-webserver-lab" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" style="font-size:11px; padding: 0.3rem 0.9rem;">GitHub ↗</a>
         </div>
-        <a href="https://github.com/avalletech/network-security-fundamentals" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="padding: 0.35rem 0.9rem; font-size: 13px;">View on GitHub →</a>
       </div>
-    </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">04</span>
+        </div>
+        <h3>Active Directory Lab</h3>
+        <p>Deployed VMs using Hyper-V and VirtualBox, installed Windows Server, and promoted it to a Domain Controller. Configured AD DS with user accounts, security groups, and RBAC. Provisioned AWS EC2 instances with security groups and remote access via SSH/RDP.</p>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Hyper-V</span>
+            <span class="tag">AWS EC2</span>
+          </div>
+          <a href="https://github.com/avalletech/active-directory-lab" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" style="font-size:11px; padding: 0.3rem 0.9rem;">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">05</span>
+        </div>
+        <h3>Python Automation Scripts</h3>
+        <p>Python automation scripts built for real personal use on Windows. Includes a Downloads folder organizer that sorts files by type, a startup launcher using subprocess, and a subnet calculator using Python's ipaddress module — built while studying for Network+.</p>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Automation</span>
+            <span class="tag">pathlib</span>
+            <span class="tag">ipaddress</span>
+          </div>
+          <a href="https://github.com/avalletech/python-scripts" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" style="font-size:11px; padding: 0.3rem 0.9rem;">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">06</span>
+        </div>
+        <h3>Android Studio Projects</h3>
+        <p>Collection of Android apps built in Java using Android Studio, covering UI interaction, device sensors, animations, and real-time logic. Layouts designed in XML.</p>
+        <div style="display:flex; flex-direction:column; gap:0.4rem; margin: 0.5rem 0;">
+          <a href="https://github.com/avalletech/android-beeflowers" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ BeeFlowers — <span style="color:var(--text-muted)">Bee hides behind flowers and flees on cursor proximity</span></a>
+          <a href="https://github.com/avalletech/android-billiards" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ Billiards — <span style="color:var(--text-muted)">Push an 8-ball around a full-screen pool table using touch</span></a>
+          <a href="https://github.com/avalletech/android-shake" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ Shake — <span style="color:var(--text-muted)">Ask a question, shake the device, get a Magic 8-Ball response</span></a>
+          <a href="https://github.com/avalletech/android-compass" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ Compass — <span style="color:var(--text-muted)">Functional compass using the device's orientation sensor</span></a>
+          <a href="https://github.com/avalletech/android-fibonacci" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ Fibonacci — <span style="color:var(--text-muted)">Visualizes the Fibonacci spiral with pink and yellow circles</span></a>
+          <a href="https://github.com/avalletech/android-stopwatch" target="_blank" rel="noopener noreferrer" style="color:var(--green); font-size:12px; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">↗ Stopwatch — <span style="color:var(--text-muted)">Stopwatch displaying H:M:S:MS with start, stop, and reset</span></a>
+        </div>
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Java</span>
+            <span class="tag">XML</span>
+            <span class="tag">Android Studio</span>
+            <span class="tag">Android SDK</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -700,38 +1017,65 @@
 <hr class="divider">
 
 <section id="certs">
-  <div class="section-label">Certifications</div>
-  <h2>Certifications & Training</h2>
-  <div class="certs-row">
-    <div class="cert-card">
-      <div class="cert-badge">A+</div>
-      <div class="cert-info">
-        <h3>CompTIA A+</h3>
-        <div class="cert-status">⏳ In Progress</div>
+  <div class="container">
+    <div class="section-label">Certifications</div>
+    <h2>Certifications &amp; Training</h2>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-badge">A+</div>
+        <div class="cert-info">
+          <h3>CompTIA A+</h3>
+          <p>CompTIA</p>
+          <div class="cert-status active">// IN PROGRESS</div>
+        </div>
       </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-badge">N+</div>
-      <div class="cert-info">
-        <h3>CompTIA Network+</h3>
-        <div class="cert-status">⏳ In Progress</div>
+
+      <div class="cert-card">
+        <div class="cert-badge">N+</div>
+        <div class="cert-info">
+          <h3>CompTIA Network+</h3>
+          <p>CompTIA</p>
+          <div class="cert-status active">// IN PROGRESS</div>
+        </div>
       </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-badge" style="font-size:9px; line-height:1.4;">CISCO<br>NetAcad</div>
-      <div class="cert-info">
-        <h3>Getting Started with Cisco Packet Tracer</h3>
-        <p style="font-size:12px; color:var(--muted); margin:2px 0 4px;">Cisco Networking Academy</p>
-        <div class="cert-status" style="color: #00C9A7;">✓ Completed Feb 2026</div>
+
+      <div class="cert-card">
+        <div class="cert-badge">CISCO</div>
+        <div class="cert-info">
+          <h3>Exploring IoT with Cisco Packet Tracer</h3>
+          <p>Cisco Networking Academy</p>
+          <div class="cert-status done">// COMPLETED MAY 2026</div>
+        </div>
       </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-badge" style="font-size:9px; line-height:1.4;">DHS<br>FEMA</div>
-      <div class="cert-info">
-        <h3>Information Security Basics</h3>
-        <p style="font-size:12px; color:var(--muted); margin:2px 0 4px;">TEEX / FEMA &mdash; AWR-173 &nbsp;|&nbsp; 1.3 CEUs</p>
-        <div class="cert-status" style="color: #00C9A7;">✓ Completed May 2021</div>
+
+      <div class="cert-card">
+        <div class="cert-badge">CISCO</div>
+        <div class="cert-info">
+          <h3>Exploring Networking with Cisco Packet Tracer</h3>
+          <p>Cisco Networking Academy</p>
+          <div class="cert-status done">// COMPLETED MAY 2026</div>
+        </div>
       </div>
+
+      <div class="cert-card">
+        <div class="cert-badge">CISCO</div>
+        <div class="cert-info">
+          <h3>Getting Started with Cisco Packet Tracer</h3>
+          <p>Cisco Networking Academy</p>
+          <div class="cert-status done">// COMPLETED FEB 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-badge">DHS</div>
+        <div class="cert-info">
+          <h3>Information Security Basics</h3>
+          <p>TEEX / FEMA — AWR-173 | 1.3 CEUs</p>
+          <div class="cert-status done">// COMPLETED MAY 2021</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -739,15 +1083,17 @@
 <hr class="divider">
 
 <section id="contact">
-  <div class="section-label">Contact</div>
-  <h2>Get in Touch</h2>
-  <div class="contact-box">
-    <p>Open to IT internships, help desk roles, network support, and entry-level IT positions in the NYC area. Let's talk.</p>
-    <div class="contact-links">
-      <a href="mailto:avalle2821@icloud.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">avalle2821@icloud.com</a>
-      <a href="tel:6318365242" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">631-836-5242</a>
-      <a href="https://github.com/avalletech" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/avalletech/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2>Get in Touch</h2>
+    <div class="contact-box">
+      <p>Open to IT internships, help desk roles, network support, and entry-level IT positions in the NYC area. If you're hiring or want to connect, reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:avalle2821@icloud.com" class="btn btn-ghost">Email</a>
+        <a href="https://www.linkedin.com/in/avalletech/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/avalletech" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://raw.githubusercontent.com/avalletech/avalletech.github.io/main/Alexis_VB_Resume.docx" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download Resume</a>
+      </div>
     </div>
   </div>
 </section>
@@ -755,9 +1101,69 @@
 <hr class="divider">
 
 <footer>
-  <span>Alexis Valle-Bonilla &mdash; Queens, NY</span>
-  <span>avb@portfolio:~$ _</span>
+  <span>Alexis Valle-Bonilla — Queens, NY</span>
+  <span>avalletech.github.io<span class="cursor-blink"></span></span>
 </footer>
+
+<script>
+// ACTIVITY RAIN — ambient system traffic, not Matrix
+const canvas = document.getElementById('sys-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener('resize', () => { resize(); cols = Math.floor(canvas.width / fontSize); });
+
+// Network/system characters — hex, IPs, port-like strings
+const chars = '0123456789ABCDEF.:';
+const fontSize = 13;
+let cols = Math.floor(canvas.width / fontSize);
+let drops = Array.from({length: cols}, () => Math.random() * -80);
+
+function drawRain() {
+  ctx.fillStyle = 'rgba(0,0,0,0.055)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  while (drops.length < cols) drops.push(Math.random() * -80);
+
+  ctx.font = fontSize + 'px IBM Plex Mono, monospace';
+
+  for (let i = 0; i < cols; i++) {
+    const char = chars[Math.floor(Math.random() * chars.length)];
+    const b = Math.random();
+
+    if (b > 0.97) {
+      ctx.fillStyle = '#00e676';
+    } else if (b > 0.75) {
+      ctx.fillStyle = '#00994d';
+    } else {
+      ctx.fillStyle = '#003b18';
+    }
+
+    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+
+setInterval(drawRain, 50);
+
+// Mobile nav toggle
+document.getElementById('nav-toggle').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+
+// Close nav on link click (mobile)
+document.querySelectorAll('#nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('nav-links').classList.remove('open');
+  });
+});
+</script>
 
 </body>
 </html>
